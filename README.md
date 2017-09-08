@@ -1,7 +1,7 @@
 # Auction Calendar
 
 Auction Calendar is a Sinatra Application CMS.
- This app allows an Auctioneer or Auction Buisness to manage their upcoming sales. A user is able to Create an Auction with a sale title, description, location, sale starting date/time and ending date/time. A auction can be managed after creation. This allows the user to assign one or many Auctioneers to the sale, as well as remove or replace them with other auction staff. The application displays the final results on an attractive auction calendar page.
+ This app allows an Auctioneer or Auction business to manage their upcoming sales. A user is able to Create an Auction with a sale title, description, location, sale starting date/time and ending date/time. An auction can be managed after creation. This allows the user to assign one or many Auctioneers to the sale, as well as remove or replace them with other auction staff. The application displays the final results on an attractive auction calendar page.
 
 ## Installation
 
