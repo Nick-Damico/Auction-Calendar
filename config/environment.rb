@@ -10,6 +10,5 @@ configure :development do
   )
 end
 
-
-require 'rack-flash' 
-require_all "app"
+require 'rack-flash'
+require_all 'app'
