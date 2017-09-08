@@ -1,6 +1,6 @@
 class CreateAuctioneers < ActiveRecord::Migration[5.1]
   def change
-  	create_table do |t|
+  	create_table :auctioneers do |t|
   		t.string	:name
   	end
   end
