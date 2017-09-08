@@ -17,5 +17,13 @@ class ApplicationController < Sinatra::Base
 	    def logged_in?
 	      !!current_user
 	    end
+
+	    def user_exists?(params)
+	    	User.exists?(email: params["email"])
+	    end
+
+	    def authorize_user(params)
+	    	User.find_by(:username => params[:username]).try(:authenticate, params[:password])
+	    end
 	end
 end
