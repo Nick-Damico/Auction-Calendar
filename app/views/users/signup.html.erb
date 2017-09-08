@@ -2,6 +2,10 @@
 
 <h2>Start managing your auctions today.</h2>
 <form method="post" action="/signup">
+	<% if flash.has?(:message) %>
+  		<%= flash[:message] %>
+	<% end %>
+	<br />
 	<input type="text" name="username" placeholder="Username" required><br />
 	<input type="email" name="email" placeholder="Email" required><br />
 	<input type="password" name="password" placeholder="Password" required><br />
