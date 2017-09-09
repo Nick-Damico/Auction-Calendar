@@ -1,0 +1,17 @@
+<h1> Hi, <%= current_user.username %></h1>
+<a class="btn btn-primary btn-sm" href="/users/<%=current_user.slug%>">View Your Sales</a>
+<a class="btn btn-primary btn-sm" href="/auctions">View All Sales</a>
+<a href="/auctioneers/new" class="btn btn-success btn-sm">Create Auctioneers</a>
+<a href="/auctions/new" class="btn btn-success btn-sm">Create Auctions</a>
+<a class="btn btn-warning btn-sm" href="/logout">Log Out</a>
+
+<% if !@auctioneers %>
+	<p>No Auctioneers to List</p>
+	
+<% else %>
+	<ul>
+	<% @auctioneers.each do |auctioneer| %>
+		<li><%=auctioneer.name%></li>
+	<% end %>
+	</ul>
+<% end %>
