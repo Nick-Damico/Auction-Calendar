@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170908205946) do
+ActiveRecord::Schema.define(version: 20170909182641) do
 
-  create_table "auction_auctioneer", force: :cascade do |t|
+  create_table "auction_auctioneers", force: :cascade do |t|
     t.integer "auction_id"
     t.integer "auctioneer_id"
   end
