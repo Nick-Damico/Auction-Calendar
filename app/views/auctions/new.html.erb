@@ -1,0 +1,99 @@
+<h1>Create a New Auction</h1>
+
+<div class="container">
+  <form method="post" action="/auctions">
+  <!-- AUCTION INPUTS -->
+  	<!-- Create Auction -->
+    <div class="form-group row">
+    	<label for="title" class="col-sm-2 col-form-label">Title</label>
+	    <div class="col-sm-10">
+		    <input type="text" id="title" class="form-control" name="auction[title]">
+	  	</div>
+	</div><!-- End of/Auction Title -->
+
+	<!-- Auction location -->
+	<div class="form-group row">
+	  	<label for="location" class="col-sm-2 col-form-label">Location</label>
+	    <div class="col-sm-10">
+		    <input type="text" id="location" class="form-control" name="auction[location]">
+	  	</div>
+	</div><!-- End of/Auction location -->
+
+	<!-- Auction description -->
+	<div class="form-group row">
+		<label class="col-sm-2 col-form-label" for="description">Description</label>
+		<div class="col-sm-10">
+    		<textarea class="form-control" id="description" name="auction[description]" rows="3"></textarea>
+    	</div>
+    </div> <!-- End of/Auction description -->
+
+    <!-- Auction start date -->
+	<div class="form-group row">
+		<label class="col-sm-2 col-form-label" for="start_date">Sale_Date</label>
+		<div class="col-sm-10">
+    		<input type="text" id="start_date" class="form-control" name="auction[start_date]" placeholder="example: Saturday, May 20, 2017">
+    	</div>
+    </div> <!-- End of/Auction start date -->
+
+     <!-- Auction start date -->
+	<div class="form-group row">
+		<label class="col-sm-2 col-form-label" for="start_time">Sale_Time</label>
+		<div class="col-sm-10">
+    		<input type="text" id="start_time" class="form-control" name="auction[start_time]" placeholder="example:  8:30 AM EDT">
+    	</div>
+    </div> <!-- End of/Auction start time -->
+
+     <!-- Auction preview date -->
+	<div class="form-group row">
+		<label class="col-sm-2 col-form-label" for="preview_date">Prev_Date</label>
+		<div class="col-sm-10">
+    		<input type="text" id="preview_date" class="form-control" name="auction[preview_date]" placeholder="example: Saturday, May 19, 2017">
+    	</div>
+    </div> <!-- End of/Auction preview date -->
+
+      <!-- Auction preview date -->
+	<div class="form-group row">
+		<label class="col-sm-2 col-form-label" for="preview_time">Prev_Time</label>
+		<div class="col-sm-10">
+    		<input type="text" id="preview_time" class="form-control" name="auction[preview_time]" placeholder="example: 7:30 AM EDT">
+    	</div>
+    </div> <!-- End of/Auction preview date -->
+
+    <!-- END OF AUCTION INPUTS -->
+
+  	<!-- Checkboxes for Auctioneers -->
+    <div class="form-group row">
+      <div class="col-sm-10">
+        <div class="form-check">
+        <h4>Select Auctioneer(s)</h3>
+        <% Auctioneer.all.each do |auctioneer| %>
+
+          <label class="form-check-label">
+            <input class="form-check-input" type="checkbox" name="auction[auctioneer_ids][]"> <%=auctioneer.name %>
+          </label>
+
+        <% end %>
+
+        </div>
+      </div>
+    </div><!-- END of/Checkboxes for Auctioneers -->
+
+    <!-- Input to Create New Instances of Auctioneer Class -->
+    <h4>Create Auctioneer</h3>
+    <!-- Create Auctioneers -->
+    <div class="form-group row">
+    	<label for="auctioneer_name" class="col-sm-2 col-form-label">Name</label>
+	    <div class="col-sm-10">
+		    <input type="text" id="auctioneer_name" class="form-control" name="auctioneer[name]">
+	  	</div>
+	</div><!-- End of/Auction Title -->
+    
+   <!-- Need an input for Creating Auctioneers --> 
+    <div class="form-group row">
+      <div class="col-sm-10">
+        <button type="submit" class="btn btn-primary">Create Auction</button>
+      </div>
+    </div>
+
+  </form>
+</div>
