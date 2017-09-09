@@ -5,12 +5,13 @@
 <a href="/auctions/new" class="btn btn-success btn-sm">Create Auctions</a>
 <a class="btn btn-warning btn-sm" href="/logout">Log Out</a>
 
-<% if !@auctioneers %>
+<% if Auctioneer.all.empty? %>
 	<p>No Auctioneers to List</p>
 	
 <% else %>
 	<ul>
-	<% @auctioneers.each do |auctioneer| %>
+	<% Auctioneer.all.each do |auctioneer| %>
+		<!-- clickable name, should take you to list of auctioneers upcoming sales -->
 		<li><%=auctioneer.name%></li>
 	<% end %>
 	</ul>
