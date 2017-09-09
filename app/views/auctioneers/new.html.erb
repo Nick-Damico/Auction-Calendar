@@ -1,0 +1,41 @@
+<h1>Add Auctioneer to Database</h1>
+
+<div class="container">
+  <form method="post" action="/auctioneers">
+  <!-- AUCTIONEER INPUTS -->
+  	<!-- Create Auction -->
+    <div class="form-group row">
+    	<label for="name" class="col-sm-2 col-form-label">Name</label>
+	    <div class="col-sm-10">
+		    <input type="text" id="name" class="form-control" name="auctioneer[name]">
+	  	</div>
+	</div><!-- End of/Auction Title -->
+
+    <!-- END OF AUCTIONEER INPUTS -->
+
+  	<!-- Checkboxes for Auctioneers -->
+    <div class="form-group row">
+      <div class="col-sm-10">
+        <div class="form-check">
+        <h4>Assign Auctioneer to Sale(s)</h3>
+        <% Auction.all.each do |auction| %>
+
+          <label class="form-check-label">
+            <input class="form-check-input" type="checkbox" name="auctioneer[auction_ids][]" value="<%=auction.id%>"> <%=auction.title %>
+          </label>
+
+        <% end %>
+
+        </div>
+      </div>
+    </div><!-- END of/Checkboxes for Auctioneers -->
+    
+   <!-- Need an input for Creating Auctioneers --> 
+    <div class="form-group row">
+      <div class="col-sm-10">
+        <button type="submit" class="btn btn-success">Add Auctioneer</button>
+      </div>
+    </div>
+
+  </form>
+</div>
