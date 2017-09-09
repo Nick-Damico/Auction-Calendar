@@ -25,5 +25,10 @@ class ApplicationController < Sinatra::Base
 	    def authorize_user(params)
 	    	User.find_by(:username => params[:username]).try(:authenticate, params[:password])
 	    end
+
+	    # Escapes HTML Code if embedded in content submitted.
+	    def h(string)
+  			Rack::Utils.escape_html(string)
+		end
 	end
 end
