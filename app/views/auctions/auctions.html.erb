@@ -1,6 +1,14 @@
-<h1> Hi, <%= current_user.username %></h1> <a href="/logout">Log Out</a>
+<h1> Hi, <%= current_user.username %></h1> 
+<a class="btn btn-primary btn-sml" href="/users/<%=current_user.slug%>">View Your Sales</a>
+<a href="/auctions/new" class="btn btn-success btn-sml">Create Auctions</a>
+<a href="/auctioneers/new" class="btn btn-success btn-sml">Add Auctioneer</a>
+<a class="btn btn-warning" href="/logout">Log Out</a>
 
-<% @auctions.each do |auction| %>
+<% if @auctions.empty? %>
+	<p>No Auctions to List</p>
+	
+<% else %>
+	<% @auctions.each do |auction| %>
 	<div>
 		<h2><%= auction.title %></h2>
 		<div>
@@ -18,4 +26,5 @@
 			<p><%= auction.preview %></p>
 		</div>
 	</div>
+<% end %>
 <% end %>
