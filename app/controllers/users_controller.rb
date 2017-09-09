@@ -26,7 +26,6 @@ class UsersController < ApplicationController
 	end
 
 	post '/login' do
-		
 		if @user = authorize_user(params)
 			session[:id] = @user.id
 		else
@@ -42,6 +41,17 @@ class UsersController < ApplicationController
 		else
 			redirect to '/'
 		end
+	end
+
+	get '/users/:slug' do
+		redirect to :'/' if !logged_in?
+		if !logged_in?
+			redirect to :'/'
+		elsif !@user = User.find_by_slug(params[:slug])
+			redirect to :'/auctions'
+		end
+		@autions = @user.auctions
+		erb :'users/show.html'
 	end
 
 	
