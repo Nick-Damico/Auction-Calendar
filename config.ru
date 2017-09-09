@@ -8,4 +8,5 @@ end
 use Rack::MethodOverride
 use UsersController
 use AuctionController
+use AuctioneerController
 run ApplicationController
