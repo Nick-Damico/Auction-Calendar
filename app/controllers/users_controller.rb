@@ -29,7 +29,7 @@ class UsersController < ApplicationController
 		if @user = authorize_user(params)
 			session[:id] = @user.id
 		else
-			redirect to :'/signup'
+			redirect to :'/'
 		end
 		redirect to :'/auctions'
 	end
