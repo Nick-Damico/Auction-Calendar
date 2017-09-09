@@ -4,11 +4,11 @@
 <a href="/auctioneers/new" class="btn btn-success btn-sml">Add Auctioneer</a>
 <a class="btn btn-warning" href="/logout">Log Out</a>
 
-<% if @auctions.empty? %>
+<% if Auction.all.empty? %>
 	<p>No Auctions to List</p>
 	
 <% else %>
-	<% @auctions.each do |auction| %>
+	<% Auction.all.each do |auction| %>
 	<div>
 		<h2><%= auction.title %></h2>
 		<div>
@@ -18,12 +18,19 @@
 		<div>
 			<h3>Live On-Site Auction</h3>
 			<p>Location: <%=auction.location%></p>
-			<p>Begins at: <%= auction.start_time %></p>
-			<p>Ends at: <%= auction.end_time %></p>
+			<p>Begins at: <%= auction.start_date %> <%= auction.start_time%></p>
 		</div>
 		<div>
 			<h3>Live On-site Preview</h3>
-			<p><%= auction.preview %></p>
+			<p><%= auction.preview_date %> <%=auction.preview_time%></p>
+		</div>
+		<div>
+			<h3>Auctioneers</h3>
+			<ul>
+				<% auction.auctioneers.each do |auctioneer| %>
+					<li><%= auctioneer.name %></li>
+				<% end %>
+			</ul>
 		</div>
 	</div>
 <% end %>
