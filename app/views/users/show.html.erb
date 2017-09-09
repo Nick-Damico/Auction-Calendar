@@ -4,7 +4,7 @@
 
 <% if !@auctions %>
 	<p>No currently scheduled auctions</p>
-	<a href="/auctions/:id/create" class="btn btn-primary">Create Auction</a>
+	<a href="/auctions/new" class="btn btn-primary">Create Auction</a>
 <% else %>
 	<% @auctions.each do |auction| %>
 		<div>
