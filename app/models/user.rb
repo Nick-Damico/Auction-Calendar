@@ -10,4 +10,14 @@ class User < ActiveRecord::Base
 
 	validates :username, presence: true,						 
 						 allow_blank: false
+
+
+	def slug
+		self.username.downcase.gsub(" ", "-")
+	end
+
+	def self.find_by_slug(slug)	
+		self.all.find { |user| user.slug == slug}
+	end
+
 end
