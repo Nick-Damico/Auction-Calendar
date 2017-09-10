@@ -20,6 +20,7 @@ class AuctioneerController < ApplicationController
 
     get '/auctioneers/:id/edit' do
     	redirect to '/' if !logged_in?
+    	@auctioneer = Auctioneer.find(params[:id])
     	erb :'auctioneers/edit.html'
     end
 
