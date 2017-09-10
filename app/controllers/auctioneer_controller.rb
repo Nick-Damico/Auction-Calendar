@@ -14,7 +14,9 @@ class AuctioneerController < ApplicationController
 	end
 
 	 get '/auctioneers/:id' do
-      @auctioneer = Auctioneer.find(params[:id])
+	 	if !@auctioneer = Auctioneer.find_by(id: params[:id])
+	 		redirect to '/auctioneers'
+      	end
       erb :'auctioneers/show.html'
     end
 
@@ -32,6 +34,23 @@ class AuctioneerController < ApplicationController
 			redirect to '/auctioneers/new'
 		end
 		erb :'auctioneers/auctioneers.html'
+	end
+
+	patch '/auctioneers/:id' do
+		@auctioneer = Auctioneer.find(params[:id])		
+		if params["auction_ids"] == nil
+			@auctioneer.auctions.destroy_all
+		end
+		@auctioneer.update(params["auctioneer"])
+		# redirect to individual auction page
+		redirect to "/auctioneers/#{@auctioneer.id}"
+	end
+
+	delete '/auctioneers/:id' do
+		if @auctioneer = Auctioneer.find(params[:id])
+			Auctioneer.destroy(@auctioneer.id)
+		end
+		redirect to '/auctioneers'
 	end
 
 end
