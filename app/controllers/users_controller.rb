@@ -9,15 +9,14 @@ class UsersController < ApplicationController
 	end
 
 	post '/signup' do
-		if User.exists?(email: params["email"])
-			redirect to :'/login'
-		elsif !User.new(params).valid?
+		if User.new(params).valid? && !User.exists?(email: params["email"])
+			@user = User.create(params)
+			session[:id] = @user.id
+			redirect to '/auctions'
+		elsif !User.new(params).valid? && User.exists?(email: params["email"])
 			flash[:message] = "Username/Email already taken"
-			erb :'users/signup.html'
 		end
-		@user = User.create(params)
-		session[:id] = @user.id
-		redirect to :'/auctions'
+		erb :'users/signup.html'
 	end
 
 	get '/login' do
