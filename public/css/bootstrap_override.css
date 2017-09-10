@@ -1,0 +1,31 @@
+.landing-page--div,
+.signup-page--div,
+.login-page--div {
+	background: url('../img/calendar_v2_resize.jpg') no-repeat center center;
+	background-size: cover;
+	z-index: 1;
+}
+
+.navbar-landing {
+	z-index: 100;
+}
+
+
+
+/*// Small devices (landscape phones, 576px and up)*/
+@media (min-width: 320px) {
+	.landing-page--header,.signup-page--header,.login-page--header{ padding-top: 8rem; }
+}
+
+/*Medium devices (tablets, 768px and up)*/
+@media (min-width: 768px) {
+	.landing-page--header{ padding-top: 10rem; }
+}
+
+/*Large devices (desktops, 992px and up)*/
+@media (min-width: 992px) { 
+	.landing-page--header{ padding-top: 15rem; }
+}
+
+/*Extra large devices (large desktops, 1200px and up)*/
+@media (min-width: 1200px) { ... }
