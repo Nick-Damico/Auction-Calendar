@@ -1,0 +1,10 @@
+<h1>Auctioneer: <%=@auctioneer.name %></h1>
+<ul>
+	<h3><u>Upcoming Auctions</u></h3>
+	<% @auctioneer.auctions.each do |auction| %>
+		<!-- Add Individual Show page for auctions -->
+		<!-- Update Link with that url -->
+		<li><a href="/auctions/<%=auction.id%>"><%=auction.title%></a></li>
+	<% end %>
+</ul>
+<a class="btn btn-warning" href="/auctioneers/<%=@auctioneer.id%>/edit">Edit</a> 
