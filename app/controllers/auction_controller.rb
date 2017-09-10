@@ -59,4 +59,11 @@ class AuctionController < ApplicationController
 		redirect to '/auctions'
 	end
 
+	delete '/auctions/:id' do
+		if @auction = current_user.auctions.find(params[:id])
+			Auction.destroy(@auction.id)
+		end
+		redirect to '/auctions'
+	end
+
 end
