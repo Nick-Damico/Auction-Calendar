@@ -1,14 +1,32 @@
-<h1>Auction Calendar</h1>
+<nav class="navbar navbar-dark bg-dark navbar-landing">
+  <h3 class="masthead-brand text-light">Auction Calendar</h3>
+  <a class="nav-link btn btn-outline-primary" href="/login">Log In</a>
+</nav>
 
-<h2>Start managing your auctions today.</h2>
-<form method="post" action="/signup">
-	<% if flash.has?(:message) %>
-  		<%= flash[:message] %>
-	<% end %>
-	<br />
-	<input type="text" name="username" placeholder="Username" required><br />
-	<input type="email" name="email" placeholder="Email" required><br />
-	<input type="password" name="password" placeholder="Password" required><br />
-	<button type="submit" class="btn btn-primary btn-sml">Sign Up</button>
- 	<a href="/login" class="btn btn-success btn-sml">Log In</a>
-</form>
+<div class="signup-page--div h-100">
+  <div class="container h-100 landing-page--info text-center"> 
+  	<h3 class="signup-page--header mb-5">Start managing your auctions today.</h3>
+
+	<form method="post" action="/signup">
+		<% if flash.has?(:message) %>
+				<%= flash[:message] %>
+		<% end %>
+		<div class="form-group">
+			<!-- Username input -->
+	  		<input type="text" name="username" class="form-control" placeholder="Username" required>
+	  	</div>
+	  	<div class="form-group">
+	  		<!-- Email Input -->
+	    	<input type="email" name="email" class="form-control" placeholder="Enter email" required>
+	    	<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+		</div>
+  		<div class="form-group">    	
+    		<input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password" required>
+  		</div>
+  		
+  		<button type="submit" class="btn btn-primary btn-sml">Submit</button>
+
+	</form>
+
+  </div>
+</div>
