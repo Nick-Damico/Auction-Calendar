@@ -3,7 +3,8 @@ class Auctioneer < ActiveRecord::Base
 	has_many :auctions, :through => :auction_auctioneer
 
 	validates :name,	presence: true, 					  
- 						uniqueness: true
+ 						uniqueness: true,
+ 						allow_blank: false
 
  	# Add Migrations for columns,
  		# License Number w/ Validations
