@@ -10,7 +10,7 @@
 <% else %>
 	<% Auction.all.each do |auction| %>
 	<div>
-		<h2><%= auction.title %></h2>
+		<h2><a href="/auctions/<%=auction.id%>"><%= auction.title %></a></h2>
 		<div>
 			<h3>Auction Description</h3>
 			<p><%= auction.description %></p>
@@ -28,10 +28,13 @@
 			<h3>Auctioneers</h3>
 			<ul>
 				<% auction.auctioneers.each do |auctioneer| %>
-					<li><%= auctioneer.name %></li>
+					<li><a href="/auctioneers/<%=auctioneer.id%>"><%= auctioneer.name %></a></li>
 				<% end %>
 			</ul>
 		</div>
+			<% if auction.user_id == current_user.id %>
+				<a class="btn btn-warning" href="/auctions/<%=auction.id%>/edit">Edit</a> 
+			<% end %>
 	</div>
 <% end %>
 <% end %>
