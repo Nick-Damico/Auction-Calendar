@@ -12,7 +12,7 @@
 	<ul>
 	<% Auctioneer.all.each do |auctioneer| %>
 		<!-- clickable name, should take you to list of auctioneers upcoming sales -->
-		<li><%=auctioneer.name%></li>
+		<li><a href="/auctioneers/<%=auctioneer.id%>"><%=auctioneer.name%></a></li>
 	<% end %>
 	</ul>
 <% end %>
