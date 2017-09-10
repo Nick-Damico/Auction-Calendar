@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-	has_many :auctions
+	has_many :auctions, dependent: :destroy
  	has_secure_password
 
  	validates :email,  presence: true, 					  
