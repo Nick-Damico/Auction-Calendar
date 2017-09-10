@@ -1,0 +1,9 @@
+<h1><%=@auction.title%></h1>
+<ul>
+	<h3><u>Auctioneers Assigned to Sale</u></h3>
+	<% @auction.auctioneers.each do |auctioneer| %>
+		<!-- Add Individual Show page for auctions -->
+		<!-- Update Link with that url -->
+		<li><a href="/auctioneers/<%=auctioneer.id%>"><%=auctioneer.name%></a></li>
+	<% end %>
+</ul>
