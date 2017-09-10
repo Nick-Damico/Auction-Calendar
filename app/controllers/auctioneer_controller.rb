@@ -18,6 +18,11 @@ class AuctioneerController < ApplicationController
       erb :'auctioneers/show.html'
     end
 
+    get '/auctioneers/:id/edit' do
+    	redirect to '/' if !logged_in?
+    	erb :'auctioneers/edit.html'
+    end
+
 	post '/auctioneers' do
 		if Auctioneer.new(params["auctioneer"]).valid?
 			Auctioneer.create(params["auctioneer"])
