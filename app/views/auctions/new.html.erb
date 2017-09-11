@@ -1,99 +1,143 @@
-<h1>Create a New Auction</h1>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-between">
+    <a class="navbar-brand" href="/users/<%=current_user.slug%>">
+        <%=current_user.username%>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          View
+        </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="/auctions">All Auctions</a>
+                    <a class="dropdown-item" href="/users/<%=current_user.slug%>">Your Auctions</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Create
+        </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="/auctions/new">Add Auction</a>
+                    <a class="dropdown-item" href="/auctioneers/new">Add Auctioneer</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <a class="nav-link btn btn-outline-primary" href="/logout">Log Out</a>
+</nav>
 
 <div class="container">
-  <form method="post" action="/auctions">
-  <!-- AUCTION INPUTS -->
-  	<!-- Create Auction -->
-    <div class="form-group row">
-    	<label for="title" class="col-sm-2 col-form-label">Title</label>
-	    <div class="col-sm-10">
-		    <input type="text" id="title" class="form-control" name="auction[title]">
-	  	</div>
-	</div><!-- End of/Auction Title -->
+  <div class="row justify-content-center">
+    <div class="col-11 col-sm-12 col-md-11 col-lg-8">
+    <h1 class="display-4 create-auction--header">Create a New Auction</h1>
+      <form method="post" action="/auctions">
+      <!-- AUCTION INPUTS -->
+      	<!-- Create Auction -->
+        <div class="form-group row">
+        	<label for="title" class="col-sm-2 col-form-label">Title</label>
+    	    <div class="col-sm-10">
+    		    <input type="text" id="title" class="form-control" name="auction[title]">
+    	  	</div>
+    	</div><!-- End of/Auction Title -->
 
-	<!-- Auction location -->
-	<div class="form-group row">
-	  	<label for="location" class="col-sm-2 col-form-label">Location</label>
-	    <div class="col-sm-10">
-		    <input type="text" id="location" class="form-control" name="auction[location]">
-	  	</div>
-	</div><!-- End of/Auction location -->
+    	<!-- Auction location -->
+    	<div class="form-group row">
+    	  	<label for="location" class="col-sm-2 col-form-label">Location</label>
+    	    <div class="col-sm-10">
+    		    <input type="text" id="location" class="form-control" name="auction[location]">
+    	  	</div>
+    	</div><!-- End of/Auction location -->
 
-	<!-- Auction description -->
-	<div class="form-group row">
-		<label class="col-sm-2 col-form-label" for="description">Description</label>
-		<div class="col-sm-10">
-    		<textarea class="form-control" id="description" name="auction[description]" rows="3"></textarea>
-    	</div>
-    </div> <!-- End of/Auction description -->
+    	<!-- Auction description -->
+    	<div class="form-group row">
+    		<label class="col-sm-2 col-form-label" for="description">Description</label>
+    		<div class="col-sm-10">
+        		<textarea class="form-control" id="description" name="auction[description]" rows="3"></textarea>
+        	</div>
+        </div> <!-- End of/Auction description -->
 
-    <!-- Auction start date -->
-	<div class="form-group row">
-		<label class="col-sm-2 col-form-label" for="start_date">Sale_Date</label>
-		<div class="col-sm-10">
-    		<input type="text" id="start_date" class="form-control" name="auction[start_date]" placeholder="example: Saturday, May 20, 2017">
-    	</div>
-    </div> <!-- End of/Auction start date -->
+        <!-- Auction start date -->
+    	<div class="form-group row">
+    		<label class="col-sm-2 col-form-label" for="start_date">Sale_Date</label>
+    		<div class="col-sm-10">
+        		<input type="text" id="start_date" class="form-control" name="auction[start_date]" placeholder="example: Saturday, May 20, 2017">
+        	</div>
+        </div> <!-- End of/Auction start date -->
 
-     <!-- Auction start date -->
-	<div class="form-group row">
-		<label class="col-sm-2 col-form-label" for="start_time">Sale_Time</label>
-		<div class="col-sm-10">
-    		<input type="text" id="start_time" class="form-control" name="auction[start_time]" placeholder="example:  8:30 AM EDT">
-    	</div>
-    </div> <!-- End of/Auction start time -->
+         <!-- Auction start date -->
+    	<div class="form-group row">
+    		<label class="col-sm-2 col-form-label" for="start_time">Sale_Time</label>
+    		<div class="col-sm-10">
+        		<input type="text" id="start_time" class="form-control" name="auction[start_time]" placeholder="example:  8:30 AM EDT">
+        	</div>
+        </div> <!-- End of/Auction start time -->
 
-     <!-- Auction preview date -->
-	<div class="form-group row">
-		<label class="col-sm-2 col-form-label" for="preview_date">Prev_Date</label>
-		<div class="col-sm-10">
-    		<input type="text" id="preview_date" class="form-control" name="auction[preview_date]" placeholder="example: Saturday, May 19, 2017">
-    	</div>
-    </div> <!-- End of/Auction preview date -->
+         <!-- Auction preview date -->
+    	<div class="form-group row">
+    		<label class="col-sm-2 col-form-label" for="preview_date">Prev_Date</label>
+    		<div class="col-sm-10">
+        		<input type="text" id="preview_date" class="form-control" name="auction[preview_date]" placeholder="example: Saturday, May 19, 2017">
+        	</div>
+        </div> <!-- End of/Auction preview date -->
 
-      <!-- Auction preview date -->
-	<div class="form-group row">
-		<label class="col-sm-2 col-form-label" for="preview_time">Prev_Time</label>
-		<div class="col-sm-10">
-    		<input type="text" id="preview_time" class="form-control" name="auction[preview_time]" placeholder="example: 7:30 AM EDT">
-    	</div>
-    </div> <!-- End of/Auction preview date -->
+          <!-- Auction preview date -->
+    	<div class="form-group row">
+    		<label class="col-sm-2 col-form-label" for="preview_time">Prev_Time</label>
+    		<div class="col-sm-10">
+        		<input type="text" id="preview_time" class="form-control" name="auction[preview_time]" placeholder="example: 7:30 AM EDT">
+        	</div>
+        </div> <!-- End of/Auction preview date -->
 
-    <!-- END OF AUCTION INPUTS -->
+        <!-- END OF AUCTION INPUTS -->
 
-  	<!-- Checkboxes for Auctioneers -->
-    <div class="form-group row">
-      <div class="col-sm-10">
-        <div class="form-check">
-        <h4>Select Auctioneer(s)</h3>
-        <% Auctioneer.all.each do |auctioneer| %>
+      	<!-- Checkboxes for Auctioneers -->
+        <div class="form-group row">
+          <div class="col-sm-10">
+            <div class="form-check">
+            <h4>Select Auctioneer(s)</h4>
+            <% Auctioneer.all.each do |auctioneer| %>
 
-          <label class="form-check-label">
-            <input class="form-check-input" type="checkbox" name="auction[auctioneer_ids][]" value="<%=auctioneer.id%>"> <%=auctioneer.name %>
-          </label>
+              <label class="form-check-label">
+                <input class="form-check-input" type="checkbox" name="auction[auctioneer_ids][]" value="<%=auctioneer.id%>"> <%=auctioneer.name %>
+              </label>
 
-        <% end %>
+            <% end %>
 
+            </div>
+            <!-- End of .form-check -->
+          </div>
+          <!-- End of .col -->
+        </div><!-- END of Checkboxes .form-group-->
+
+        <!-- Input to Create New Instances of Auctioneer Class -->
+
+        <h4>Create Auctioneer</h4>
+        <!-- Create Auctioneers -->
+        <div class="form-group row">
+        	<label for="auctioneer_name" class="col-sm-2 col-form-label">Name</label>
+    	    <div class="col-sm-10">
+    		    <input type="text" id="auctioneer_name" class="form-control" name="auctioneer[name]">
+    	  	</div>
+    	</div><!-- End of/Auction Title -->
+        
+       <!-- Need an input for Creating Auctioneers --> 
+        <div class="form-group row">
+          <div class="col-sm-10">
+            <button type="submit" class="btn btn-primary">Create Auction</button>
+          </div>
         </div>
-      </div>
-    </div><!-- END of/Checkboxes for Auctioneers -->
-
-    <!-- Input to Create New Instances of Auctioneer Class -->
-    <h4>Create Auctioneer</h3>
-    <!-- Create Auctioneers -->
-    <div class="form-group row">
-    	<label for="auctioneer_name" class="col-sm-2 col-form-label">Name</label>
-	    <div class="col-sm-10">
-		    <input type="text" id="auctioneer_name" class="form-control" name="auctioneer[name]">
-	  	</div>
-	</div><!-- End of/Auction Title -->
-    
-   <!-- Need an input for Creating Auctioneers --> 
-    <div class="form-group row">
-      <div class="col-sm-10">
-        <button type="submit" class="btn btn-primary">Create Auction</button>
-      </div>
+        <!-- End of .form-group -->
+      </form>
+      <!-- End of <form> -->
     </div>
-
-  </form>
+    <!-- End of .col class -->
+  </div>
+  <!-- End of .row -->
 </div>
+<!-- End of .container -->
+
+
