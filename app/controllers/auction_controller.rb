@@ -1,6 +1,8 @@
 class AuctionController < ApplicationController
 
 	get '/auctions' do
+		# Removes [:message] for signup failure
+		flash[:message].clear if flash[:message]
 		if !logged_in?
 			redirect to :'/login'
 		end
