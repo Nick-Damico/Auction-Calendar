@@ -1,9 +1,36 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-between">
+    <a class="navbar-brand" href="/users/<%=current_user.slug%>">
+        <%=current_user.username%>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          View
+        </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="/auctions">All Auctions</a>
+                    <a class="dropdown-item" href="/users/<%=current_user.slug%>">Your Auctions</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Create
+        </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="/auctions/new">Add Auction</a>
+                    <a class="dropdown-item" href="/auctioneers/new">Add Auctioneer</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <a class="nav-link btn btn-outline-primary" href="/logout">Log Out</a>
+</nav>
+
 <h1> Hi, <%= current_user.username %></h1>
-<a class="btn btn-primary btn-sm" href="/users/<%=current_user.slug%>">View Your Sales</a>
-<a class="btn btn-primary btn-sm" href="/auctions">View All Sales</a>
-<a href="/auctioneers/new" class="btn btn-success btn-sm">Create Auctioneers</a>
-<a href="/auctions/new" class="btn btn-success btn-sm">Create Auctions</a>
-<a class="btn btn-warning btn-sm" href="/logout">Log Out</a>
 
 <% if Auctioneer.all.empty? %>
 	<p>No Auctioneers to List</p>
