@@ -30,16 +30,46 @@
     <a class="nav-link btn btn-outline-primary" href="/logout">Log Out</a>
 </nav>
 
-<h1> Hi, <%= current_user.username %></h1>
 
-<% if Auctioneer.all.empty? %>
-	<p>No Auctioneers to List</p>
 	
-<% else %>
-	<ul>
-	<% Auctioneer.all.each do |auctioneer| %>
-		<!-- clickable name, should take you to list of auctioneers upcoming sales -->
-		<li><a href="/auctioneers/<%=auctioneer.id%>"><%=auctioneer.name%></a></li>
-	<% end %>
-	</ul>
-<% end %>
+
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-11 col-sm-12 col-md-11 col-lg-8">
+        <% if Auctioneer.all.empty? %>
+            <p>No Auctioneers to List</p>
+        <% else %>
+
+            <div class="card rounded">
+              <div class="card-header">
+                Auctioneering Staff
+              </div>
+              <div class="card-body">
+                <h4 class="card-title">Manage Your Staff</h4>
+                <p class="card-text">Select <span class="badge badge-info">more info</span> to update and assign your staff memebers to a sale.</p>
+                <ul class="list-group list-group-flush">
+                    <% Auctioneer.all.each do |auctioneer| %>
+                <!-- clickable name, should take you to list of auctioneers upcoming sales -->
+                    <li class="list-group-item bg-secondary text-white">
+                        <span class="text-left"><%=auctioneer.name%></span>
+                        <div class="float-right">
+                            <a class="btn btn-info" href="/auctioneers/<%= auctioneer.id %>">More Info</a>
+                            <a class="btn btn-warning" href="/auctioneers/<%= auctioneer.id %>/edit">edit</a>
+                        </div>
+                    </li>
+                   <% end %>
+                </ul>
+                <!-- End of auctioner ul list -->
+              </div>
+              <!-- End of .card-body -->
+            </div>
+            <!-- End of .card -->
+        <% end %>
+        <!-- End of Conditional Statement -->
+        </div>
+        <!-- End of .col class -->
+    </div>
+    <!-- End of .row -->
+</div>
+<!-- End of .container -->
