@@ -15,7 +15,17 @@ body.bg-login {
 	z-index: 100;
 }
 
+/*===========================================
+	Buttons
+===========================================*/
+a.btn-info,span.badge-info {background-color: #24aeff; border-color: #24aeff;}
+a.btn-warning,span.badge-warning {background: #ffa41d; border-color: #ffa41d;}
 
+/*===========================================
+	Cards
+===========================================*/
+
+div.card-header > h4.card-title { font-size: 1.2rem; }
 
 /*// Small devices (landscape phones, 576px and up)*/
 @media (min-width: 320px) {

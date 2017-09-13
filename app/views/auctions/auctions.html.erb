@@ -51,26 +51,30 @@
         <% Auction.all.each do |auction| %>
     	<div class="col-12 col-8 col-md-6 col-lg-4 ml-auto mr-auto">
             <div class="card mb-4" style="">
-                <img class="card-img-top img-responsive" src="http://via.placeholder.com/350x150" alt="Card image cap">
-                <div class="card-body">
+                <div class="card-header bg-info text-light">
                     <h4 class="card-title text-center"><%= auction.title %></h4>
-                    <p class="card-text">
+                </div>
+                <img class="card-img-top img-responsive" src="https://unsplash.it/350/150" alt="Card image cap">
+                <div class="card-body">
+                    
+                    <p class="card-text text-center">
                         <%= auction.description[0..40].gsub(/\s\w+\s*$/,',and more...') %>
                     </p>
                 </div>
-                <ul class="list-group list-group-flush">
+                <!-- Removed from this view of all auction listings, additional info about auction on auction/:id route -->
+                <!-- <ul class="list-group list-group-flush">
                     <li class="list-group-item"><strong>Location:</strong>
                         <%= auction.location%>
                     </li>
                     <li class="list-group-item"><strong>Auction On:</strong>
                         <%= auction.start_date %>
                     </li>                    
-                </ul>
+                </ul> -->
                 <div class="card-body text-center">
                     <% if auction.user == current_user %>
-                     <a class="p-3 mb-2 bg-warning text-white rounded" href="/auctions/<%=auction.id%>/edit">edit</a>
+                     <a class="p-3 mb-2 btn-warning text-white rounded" href="/auctions/<%=auction.id%>/edit">edit</a>
                     <% end %>                   
-                    <a class="p-3 mb-2 bg-info text-white rounded" href="/auctions/<%=auction.id%>">View All Details</a>            
+                    <a class="p-3 mb-2 btn-info text-white rounded" href="/auctions/<%=auction.id%>">View All Details</a>            
                 </div>
                 <!-- End of .card-body -->
             </div>
