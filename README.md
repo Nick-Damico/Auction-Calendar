@@ -8,7 +8,7 @@ Auction Calendar is a Sinatra Application CMS.
 
 ## Usage
 
-Download or Fork this repo. `cd` into this projects directory and excute the terminal command `shotgun` or `rackup config.ru`.
+Download or Fork this repository `cd` into the projects directory and excute the terminal command `bundle install` then followed by the command `shotgun` or `rackup config.ru`.
 
 ## TODO: 
 
