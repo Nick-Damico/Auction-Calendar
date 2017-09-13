@@ -46,21 +46,24 @@
     	<% current_user.auctions.each do |auction| %>
     		<div class="col-12 col-8 col-md-6 col-lg-4 ml-auto mr-auto">
                 <div class="card mb-4" style="">
-                    <img class="card-img-top" src="http://via.placeholder.com/350x150" alt="Card image cap">
-                    <div class="card-body">
+                    <div class="card-header bg-info text-light">
                         <h4 class="card-title text-center"><%= auction.title %></h4>
+                    </div>
+                    <img class="card-img-top" src="https://unsplash.it/350/150" alt="Card image cap">
+                    <div class="card-body">
+                       
                         <p class="card-text">
-                            <%= auction.description[0..40].gsub(/\s\w+\s*$/,',and more...') %>
+                            <%= auction.description[0..40].gsub(/\s\w+\s*$/,' and more...') %>
                         </p>
                     </div>
-                    <ul class="list-group list-group-flush">
+                    <!-- <ul class="list-group list-group-flush">
                         <li class="list-group-item"><strong>Location:</strong>
                             <%= auction.location%>
                         </li>
                         <li class="list-group-item"><strong>Auction On:</strong>
                             <%= auction.start_date %>
                         </li>                    
-                    </ul>
+                    </ul> -->
                     <div class="card-body text-center">
                         <% if auction.user == current_user %>
                             <a class="p-3 mb-2 bg-warning text-white rounded" href="/auctions/<%=auction.id%>/edit">edit</a>
