@@ -54,9 +54,5 @@ class UsersController < ApplicationController
 		erb :'users/show.html'
 	end
 
-	
-
 end
 
-# Example of using rack-flash3 messages:
-# flash[:message] = "Successfully Launched Auction Calendar."
