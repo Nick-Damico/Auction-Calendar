@@ -49,9 +49,9 @@
     <div class="container">
     <div class="row">
         <% Auction.all.each do |auction| %>
-    	<div class="col-md-6">
+    	<div class="col-12 col-8 col-md-6 col-lg-4 ml-auto mr-auto">
             <div class="card mb-4" style="">
-                <img class="card-img-top" src="http://via.placeholder.com/350x150" alt="Card image cap">
+                <img class="card-img-top img-responsive" src="http://via.placeholder.com/350x150" alt="Card image cap">
                 <div class="card-body">
                     <h4 class="card-title text-center"><%= auction.title %></h4>
                     <p class="card-text">
@@ -67,7 +67,10 @@
                     </li>                    
                 </ul>
                 <div class="card-body text-center">
-                    <a href="/auctions/<%=auction.id%>" class="card-link">View All Details</a>
+                    <% if auction.user == current_user %>
+                     <a class="p-3 mb-2 bg-warning text-white" href="/auctions/<%=auction.id%>/edit">edit</a>
+                    <% end %>                   
+                    <a class="p-3 mb-2 bg-info text-white" href="/auctions/<%=auction.id%>">View All Details</a>            
                 </div>
                 <!-- End of .card-body -->
             </div>
