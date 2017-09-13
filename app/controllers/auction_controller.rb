@@ -44,7 +44,6 @@ class AuctionController < ApplicationController
 			redirect to '/auctions/new'
 		end
 		@auction.save
-		# Add Auctions/show page for individual auction
 		redirect to "/auctions/#{@auction.id}"
 	end
 
