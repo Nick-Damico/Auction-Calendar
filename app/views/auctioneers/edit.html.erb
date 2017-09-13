@@ -40,52 +40,56 @@
     <div class="col-11 col-sm-12 col-md-11 col-lg-8">
       <h1 class="display-4 create-auction--header mb-3 text-light">Update Auctioneer</h1>
       <form method="post" action="/auctioneers/<%=@auctioneer.id%>">
-      <!-- Rack::MethodOverride for update patch request -->
-        <input type="hidden" name="_method" value="patch">
+        <div class="container bg-light rounded pb-2 pt-4">
+        <!-- Rack::MethodOverride for update patch request -->
+          <input type="hidden" name="_method" value="patch">
 
-      <!-- AUCTIONEER INPUTS -->
-      	<!-- Create Auction -->
-        <div class="form-group row">
-        	<label for="name" class="col-sm-2 col-form-label">Name</label>
-          <div class="col-sm-10">
-      	    <input type="text" id="name" class="form-control" name="auctioneer[name]" value="<%=@auctioneer.name%>">
-        	</div>
-        </div><!-- End of/Auction Title -->
+        <!-- AUCTIONEER INPUTS -->
+        	<!-- Create Auction -->
+          <div class="form-group row">
+          	<label for="name" class="col-sm-2 col-form-label">Name</label>
+            <div class="col-sm-10">
+        	    <input type="text" id="name" class="form-control" name="auctioneer[name]" value="<%=@auctioneer.name%>">
+          	</div>
+          </div><!-- End of/Auction Title -->
 
-        <!-- END OF AUCTIONEER INPUTS -->
+          <!-- END OF AUCTIONEER INPUTS -->
 
-      	<!-- Checkboxes for Auctioneers -->
-        <div class="form-group row">
-          <div class="col-sm-10">
-            <div class="form-check">
-              <h4>Assign Auctioneer to Sale(s)</h4>
-            <% Auction.all.each do |auction| %>
+        	<!-- Checkboxes for Auctioneers -->
+          <div class="form-group row">
+            <div class="col-sm-10">
+              <div class="form-check">
+                <h4>Assign Auctioneer to Sale(s)</h4>
+              <% Auction.all.each do |auction| %>
 
-              <label class="form-check-label">
-                <input class="form-check-input" type="checkbox" name="auctioneer[auction_ids][]" value="<%=auction.id%>" <%= 'checked' if @auctioneer.auctions.include?(auction)%> > <%=auction.title %></input>
-              </label>
+                <label class="form-check-label">
+                  <input class="form-check-input" type="checkbox" name="auctioneer[auction_ids][]" value="<%=auction.id%>" <%= 'checked' if @auctioneer.auctions.include?(auction)%> > <%=auction.title %></input>
+                </label>
 
-            <% end %>
+              <% end %>
 
+              </div>
+            </div>
+          </div><!-- END of/Checkboxes for Auctioneers -->
+          
+         <!-- Need an input for Creating Auctioneers --> 
+          <div class="form-group row">
+            <div class="col-sm-10">
+              <button type="submit" class="btn btn-success">Update</button>
             </div>
           </div>
-        </div><!-- END of/Checkboxes for Auctioneers -->
-        
-       <!-- Need an input for Creating Auctioneers --> 
-        <div class="form-group row">
+        </form>
+        <!-- End of form -->
+
+        <form class="form-group row" method="post" action="/auctioneers/<%=@auctioneer.id%>">
+
+          <input type="hidden" name="_method" value="delete">
           <div class="col-sm-10">
-            <button type="submit" class="btn btn-success">Update</button>
+            <button type="submit" class="btn btn-danger">Delete</button>
           </div>
-        </div>
-      </form>
-      <!-- End of form -->
 
-      <form class="form-group row" method="post" action="/auctioneers/<%=@auctioneer.id%>">
-
-        <input type="hidden" name="_method" value="delete">
-        <div class="col-sm-10">
-          <button type="submit" class="btn btn-danger">Delete</button>
         </div>
+        <!-- End of .container adds white space and container to form element -->
       </form>
       <!-- End of form Method_Override Delete -->
     </div>
