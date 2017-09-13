@@ -37,7 +37,7 @@
 
 <div class="container mt-5 text-center">
     <div class="card mb-3">
-      <img class="card-img-top" src="http://lorempixel.com/559/180/city" alt="Card image cap">
+      <img class="card-img-top" src="https://unsplash.it/600/200" alt="Card image cap">
         <div class="card-body">
             <h4 class="card-title"><%= @auction.title %></h4>
             <p class="card-text">
@@ -68,6 +68,24 @@
             </li>
         </ul>
          <!-- End of ul.list-group -->
+        
+            <% if current_user.auctions.include?(@auction) %>
+            <div class="row pb-2">
+                <div class="col col-md-4  ml-auto">
+                    <form method="get" action="/auctions/<%=@auction.id%>/edit">
+                        <button type="submit" class="btn btn-primary btn-lg btn-block mt-2">Update Info</button>
+                    </form>
+                </div>
+                <div class="col-md-4 mr-auto">
+                    <form method="post" action="/auctions/<%=@auction.id%>/edit">
+                        <input type="hidden" name="_method" valuel="delete">
+                        <button type="submit" class="btn btn-danger btn-lg btn-block mt-2">Delete</button>
+                    </form>
+                </div>
+            </div>
+            
+            <% end %>
+        
     </div>
     <!-- End of .card -->
 </div>
