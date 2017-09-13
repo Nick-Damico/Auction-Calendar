@@ -35,9 +35,7 @@ class AuctionController < ApplicationController
 	end
 
 	post '/auctions' do
-		# Process New Auction form data
 		if Auction.new(params["auction"]).valid?
-			# Flash Error msg require title.
 			@auction = current_user.auctions.new(params["auction"])	
 			if Auctioneer.new(params["auctioneer"]).valid?
 				 @auction.auctioneers.new(params["auctioneer"])
@@ -47,14 +45,14 @@ class AuctionController < ApplicationController
 		end
 		@auction.save
 		# Add Auctions/show page for individual auction
-		redirect to '/auctions'
+		redirect to "/auctions/#{@auction.id}"
 	end
 
 	patch '/auctions/:id' do
 		@auction = Auction.find(params[:id])
-		if current_user.auctions.include?(@auction)
+		if current_user.auctions.include?(@auction) && @auction.valid?
 			@auction.update(params["auction"])
-			if !params["auctioneer"].empty?
+			if Auctioneer.new(params["auctioneer"]).valid? 
 				@auction.auctioneers << Auctioneer.create(params["auctioneer"])
 			end
 		else
