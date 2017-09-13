@@ -49,9 +49,17 @@
           <div class="form-group row">
           	<label for="title" class="col-sm-2 col-form-label">Title</label>
       	    <div class="col-sm-10">
-      		    <input type="text" id="title" class="form-control" name="auction[title]" value="<%=@auction.title%>">
+      		    <input type="text" id="title" class="form-control" name="auction[title]" value="<%=@auction.title%>" required>
       	  	</div>
           </div><!-- End of/Auction Title -->
+
+          <!-- Auction description -->
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label" for="description">Description</label>
+            <div class="col-sm-10">
+                <textarea class="form-control" id="description" name="auction[description]" rows="3" required><%=@auction.description%></textarea>
+            </div>
+          </div> <!-- End of/Auction description -->
 
       	   <!-- Auction location -->
         	<div class="form-group row">
@@ -61,14 +69,6 @@
         	  	</div>
         	</div>
           <!-- End of/Auction location -->
-
-      	<!-- Auction description -->
-        	<div class="form-group row">
-        		<label class="col-sm-2 col-form-label" for="description">Description</label>
-        		<div class="col-sm-10">
-            		<textarea class="form-control" id="description" name="auction[description]" rows="3"><%=@auction.description%></textarea>
-            </div>
-          </div> <!-- End of/Auction description -->
 
           <!-- Auction start date -->
         	<div class="form-group row">
