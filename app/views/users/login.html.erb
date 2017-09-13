@@ -12,6 +12,9 @@
 
           <!-- Login Form -->
           	<form method="post" action="/login">
+              <% if flash.has?(:message) %>
+                <%= flash[:message] %>
+              <% end %>
             	<div class="form-group">
           			<!-- Username input -->
         	  		<input type="text" name="username" class="form-control" placeholder="Username" required>

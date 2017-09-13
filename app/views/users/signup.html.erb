@@ -13,7 +13,7 @@
 
 			<form method="post" action="/signup">
 				<% if flash.has?(:message) %>
-						<%= flash[:message] %>
+						<span class="badge-warning rounded pl-1 pr-1"><%= flash[:message] %></span> 
 				<% end %>
 				<div class="form-group">
 					<!-- Username input -->

@@ -14,7 +14,7 @@ class UsersController < ApplicationController
 			session[:id] = @user.id
 			redirect to '/auctions'
 		elsif !User.new(params).valid? && User.exists?(email: params["email"])
-			flash[:message] = "Username/Email already taken"
+			flash[:message] = "Email already in Use"
 		end
 		erb :'users/signup.html'
 	end
@@ -28,7 +28,8 @@ class UsersController < ApplicationController
 		if @user = authorize_user(params)
 			session[:id] = @user.id
 		else
-			redirect to :'/'
+			flash[:message] = "Username or Password incorrect"
+			redirect to '/login' 
 		end
 		redirect to :'/auctions'
 	end
