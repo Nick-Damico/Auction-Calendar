@@ -54,11 +54,14 @@ class AuctionController < ApplicationController
 		@auction = Auction.find(params[:id])
 		if current_user.auctions.include?(@auction)
 			@auction.update(params["auction"])
+			if !params["auctioneer"].empty?
+				@auction.auctioneers << Auctioneer.create(params["auctioneer"])
+			end
 		else
 			redirect to '/auctions'
 		end
-		# redirect to individual auction page
-		redirect to '/auctions'
+		@auction.save
+		redirect to "/auctions/#{@auction.id}"
 	end
 
 	delete '/auctions/:id' do
