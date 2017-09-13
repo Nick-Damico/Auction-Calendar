@@ -58,7 +58,7 @@
                 <div class="card-body">
                     
                     <p class="card-text text-center">
-                        <%= auction.description[0..40].gsub(/\s\w+\s*$/,',and more...') %>
+                        <%= auction.description[0..40].gsub(/\s\w+\s*$/,' and more...') %>
                     </p>
                 </div>
                 <!-- Removed from this view of all auction listings, additional info about auction on auction/:id route -->
