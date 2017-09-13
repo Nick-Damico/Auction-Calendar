@@ -41,7 +41,7 @@
 	<a href="/auctions/new" class="btn btn-primary">Create Auction</a>
 <% else %>
     <div class="container mt-4">
-        <h1 class="display-4 create-auction--header">Your upcoming auctions.</h1>
+        <h1 class="display-4 create-auction--header text-light">Your upcoming auctions.</h1>
         <div class="row">
     	<% current_user.auctions.each do |auction| %>
     		<div class="col-md-6">

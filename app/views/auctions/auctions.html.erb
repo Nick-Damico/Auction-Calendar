@@ -39,7 +39,7 @@
 
 <div class="container">
     <div class="col-md-6">
-        <h4 class="display-4 view-auction-header mt-3 mb-4"> Hi, <%= current_user.username %></h4>
+        <h4 class="display-4 text-light view-auction-header mt-3 mb-4"> Hi, <%= current_user.username %></h4>
     </div>
 <% if Auction.all.empty? %>
 
@@ -68,9 +68,9 @@
                 </ul>
                 <div class="card-body text-center">
                     <% if auction.user == current_user %>
-                     <a class="p-3 mb-2 bg-warning text-white" href="/auctions/<%=auction.id%>/edit">edit</a>
+                     <a class="p-3 mb-2 bg-warning text-white rounded" href="/auctions/<%=auction.id%>/edit">edit</a>
                     <% end %>                   
-                    <a class="p-3 mb-2 bg-info text-white" href="/auctions/<%=auction.id%>">View All Details</a>            
+                    <a class="p-3 mb-2 bg-info text-white rounded" href="/auctions/<%=auction.id%>">View All Details</a>            
                 </div>
                 <!-- End of .card-body -->
             </div>
