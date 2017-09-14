@@ -42,11 +42,20 @@
       <h1 class="display-4 create-auction--header mb-3 text-light">Add Auctioneer</h1>
       <div class="container bg-light rounded pb-2 pt-4">
         <form method="post" action="/auctioneers">
+
         <!-- AUCTIONEER INPUTS -->
 
-          <% if flash.has?(:message) %>
-              <span><%= flash[:message] %></span> 
-          <% end %>
+          <!-- Raises Error message if invalid submission -->
+            <% if flash.has?(:message) %>
+              <% flash[:message].each do |msg| %>
+                <span class="text-danger">
+                  <em><%= msg %></em>
+                </span>
+              <% end %>
+              <!-- End of iteration  -->
+            <% end %>
+            <!-- End of Error handling -->
+
         	<!-- Create Auctioneer -->
           <div class="form-group row">
           	<label for="name" class="col-sm-2 col-form-label">Name</label>
