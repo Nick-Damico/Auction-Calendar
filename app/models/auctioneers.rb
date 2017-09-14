@@ -6,7 +6,7 @@ class Auctioneer < ActiveRecord::Base
  						uniqueness: true,
  						allow_blank: false
 
- 	# Add Migrations for columns,
- 		# License Number w/ Validations
- 		# Designations?
+ 	validates :auctioneer_license,	presence: true,
+ 									uniqueness: true
+ 									allow_blank: false
 end

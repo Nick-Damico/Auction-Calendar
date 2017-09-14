@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170909182641) do
+ActiveRecord::Schema.define(version: 20170914005518) do
 
   create_table "auction_auctioneers", force: :cascade do |t|
     t.integer "auction_id"
@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(version: 20170909182641) do
 
   create_table "auctioneers", force: :cascade do |t|
     t.string "name"
+    t.text "bio"
+    t.text "auctioneer_license"
   end
 
   create_table "auctions", force: :cascade do |t|
