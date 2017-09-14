@@ -27,12 +27,12 @@ class AuctioneerController < ApplicationController
     end
 
 	post '/auctioneers' do
-		if Auctioneer.new(params["auctioneer"]).valid?
-			Auctioneer.create(params["auctioneer"])
-		else
-			# Flash message in future, to notify auctioneer is in DB.
+		a = Auctioneer.new(params["auctioneer"])
+		if a.invalid?
+			flash[:message] = a.errors.full_messages
 			redirect to '/auctioneers/new'
 		end
+		a.save
 		erb :'auctioneers/auctioneers.html'
 	end
 
@@ -42,7 +42,6 @@ class AuctioneerController < ApplicationController
 			@auctioneer.auctions.destroy_all
 		end
 		@auctioneer.update(params["auctioneer"])
-		# redirect to individual auction page
 		redirect to "/auctioneers/#{@auctioneer.id}"
 	end
 
