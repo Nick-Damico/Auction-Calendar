@@ -77,8 +77,8 @@
                     </form>
                 </div>
                 <div class="col-md-4 mr-auto">
-                    <form method="post" action="/auctions/<%=@auction.id%>/edit">
-                        <input type="hidden" name="_method" valuel="delete">
+                    <form method="post" action="/auctions/<%=@auction.id%>">
+                        <input type="hidden" name="_method" value="delete">
                         <button type="submit" class="btn btn-danger btn-lg btn-block mt-2">Delete</button>
                     </form>
                 </div>
