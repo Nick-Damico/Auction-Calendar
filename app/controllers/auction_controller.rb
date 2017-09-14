@@ -34,12 +34,14 @@ class AuctionController < ApplicationController
 		end
 	end
 
+	 # Need to implement a way if failure do to validation the input
+		#  fields completed keep information on redirect.
 	post '/auctions' do
 		auction = Auction.new(params["auction"])
 		auctioneer = Auctioneer.new(params["auctioneer"])		
 		if auction.invalid? || auctioneer.invalid?
 			flash[:message] = auction.errors.full_messages	if auction.invalid?
-			flash[:message] << auctioneer.errors.full_messages if auctioneer.invalid? && !params["auctioneer"]["name"].empty?
+			flash[:message] = auctioneer.errors.full_messages if auctioneer.invalid? && !params["auctioneer"]["name"].empty?
 			redirect to '/auctions/new'
 		end	
 		@auction = current_user.auctions.new(params["auction"])
@@ -49,15 +51,16 @@ class AuctionController < ApplicationController
 	end
 
 	patch '/auctions/:id' do
+		flash[:message] = [] 
 		@auction = Auction.find(params[:id])
-		if current_user.auctions.include?(@auction) && @auction.valid?
-			@auction.update(params["auction"])
-			if Auctioneer.new(params["auctioneer"]).valid? 
-				@auction.auctioneers << Auctioneer.create(params["auctioneer"])
-			end
-		else
-			redirect to '/auctions'
-		end
+		auctioneer = Auctioneer.new(params["auctioneer"])
+		if @auction.invalid? || auctioneer.invalid?
+			flash[:message] << @auction.errors.full_messages	if @auction.invalid?
+			flash[:message] << auctioneer.errors.full_messages if auctioneer.invalid? && !params["auctioneer"]["name"].empty?
+			redirect to "/auctions/#{@auction.id}/edit"
+		end	
+		@auction.update(params["auction"])		
+		@auction.auctioneers << auctioneer if auctioneer.valid?
 		@auction.save
 		redirect to "/auctions/#{@auction.id}"
 	end
