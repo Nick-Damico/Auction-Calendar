@@ -45,6 +45,19 @@
         	<input type="hidden" name="_method" value="patch">
 
         <!-- AUCTION INPUTS -->
+
+        <!-- Raises Error message if invalid submission -->
+            <% if flash.has?(:message) %>
+              <% flash[:message].flatten.each do |msg| %>
+                <span class="text-danger">
+                  <em><%= msg %></em>
+                </span>
+                <br />
+              <% end %>
+              <!-- End of iteration  -->
+            <% end %>
+            <!-- End of Error handling -->
+
         	<!-- Create Auction -->
           <div class="form-group row">
           	<label for="title" class="col-sm-2 col-form-label">Title</label>
