@@ -3,6 +3,5 @@ class Auction < ActiveRecord::Base
 	has_many :auction_auctioneer
 	has_many :auctioneers, :through => :auction_auctioneer, dependent: :destroy
 
-	validates :title, :description,	presence: true, 					  
- 									uniqueness: true
+	validates :title, :description,	presence: true
 end
