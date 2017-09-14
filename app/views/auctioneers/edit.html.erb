@@ -53,6 +53,22 @@
           	</div>
           </div><!-- End of/Auction Title -->
 
+          <!-- Auctioneer License Number -->
+            <div class="form-group row">
+              <label for="au_number" class="col-sm-2 col-form-label">AU #</label>
+              <div class="col-sm-10">
+                <input type="text" id="au_number" class="form-control" name="auctioneer[auctioneer_license]" value="<%=@auctioneer.auctioneer_license%>" required>
+              </div>
+          </div><!-- End of/Auction Title -->
+
+            <!-- Auctioneer Bio -->
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" for="bio">Bio</label>
+                <div class="col-sm-10">
+                    <textarea class="form-control" id="description" name="auctioneer[bio]" rows="3"><%=@auctioneer.bio%></textarea>
+                </div>
+            </div> <!-- End of/Auction description -->
+
           <!-- END OF AUCTIONEER INPUTS -->
 
         	<!-- Checkboxes for Auctioneers -->
@@ -67,10 +83,14 @@
                 </label>
 
               <% end %>
+              <!-- End of iteration on Auction.all -->
 
               </div>
+              <!-- End of .form-group.row -->
             </div>
-          </div><!-- END of/Checkboxes for Auctioneers -->
+            <!-- End of .col -->
+          </div>
+          <!-- END of/Checkboxes for Auctioneers -->
           
          <!-- Need an input for Creating Auctioneers --> 
           <div class="form-group row">
