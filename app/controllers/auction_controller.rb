@@ -34,17 +34,18 @@ class AuctionController < ApplicationController
 		end
 	end
 
-	post '/auctions' do		
-		if Auction.new(params["auction"]).valid?
-			@auction = current_user.auctions.new(params["auction"])	
-			if Auctioneer.new(params["auctioneer"]).valid?
-				 @auction.auctioneers.new(params["auctioneer"])
-			end
-		else
+	post '/auctions' do
+		auction = Auction.new(params["auction"])
+		auctioneer = Auctioneer.new(params["auctioneer"])		
+		if auction.invalid? || auctioneer.invalid?
+			flash[:message] = auction.errors.full_messages	if auction.invalid?
+			flash[:message] << auctioneer.errors.full_messages if auctioneer.invalid? && !params["auctioneer"]["name"].empty?
 			redirect to '/auctions/new'
-		end
+		end	
+		@auction = current_user.auctions.new(params["auction"])
+		@auction.auctioneers << auctioneer if auctioneer.valid?
 		@auction.save
-		redirect to "/auctions/#{@auction.id}"
+		redirect to "/auctions/#{@auction.id}"		
 	end
 
 	patch '/auctions/:id' do
@@ -69,3 +70,5 @@ class AuctionController < ApplicationController
 	end
 
 end
+
+
