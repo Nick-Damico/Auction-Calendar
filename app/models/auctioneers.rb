@@ -7,6 +7,6 @@ class Auctioneer < ActiveRecord::Base
  						allow_blank: false
 
  	validates :auctioneer_license,	presence: true,
- 									uniqueness: true
+ 									uniqueness: true,
  									allow_blank: false
 end
