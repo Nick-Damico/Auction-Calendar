@@ -34,7 +34,7 @@ class AuctionController < ApplicationController
 		end
 	end
 
-	post '/auctions' do
+	post '/auctions' do		
 		if Auction.new(params["auction"]).valid?
 			@auction = current_user.auctions.new(params["auction"])	
 			if Auctioneer.new(params["auctioneer"]).valid?
