@@ -44,6 +44,9 @@
         <form method="post" action="/auctioneers">
         <!-- AUCTIONEER INPUTS -->
 
+          <% if flash.has?(:message) %>
+              <span><%= flash[:message] %></span> 
+          <% end %>
         	<!-- Create Auctioneer -->
           <div class="form-group row">
           	<label for="name" class="col-sm-2 col-form-label">Name</label>
