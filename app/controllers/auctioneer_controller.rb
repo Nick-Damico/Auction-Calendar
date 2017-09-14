@@ -37,8 +37,14 @@ class AuctioneerController < ApplicationController
 	end
 
 	patch '/auctioneers/:id' do
-		@auctioneer = Auctioneer.find(params[:id])		
-		if params["auction_ids"] == nil
+		@auctioneer = Auctioneer.find(params[:id])
+		a = Auctioneer.new(params["auctioneer"])
+		
+		if a.invalid? && @auctioneer.auctioneer_license != a.auctioneer_license
+			flash[:message] = a.errors.full_messages
+			redirect to "/auctioneers/#{@auctioneer.id}/edit"
+		elsif a.valid? && params["auction_ids"] == nil
+			params["auction_ids"] == nil
 			@auctioneer.auctions.destroy_all
 		end
 		@auctioneer.update(params["auctioneer"])
