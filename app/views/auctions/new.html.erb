@@ -45,7 +45,7 @@
 
           <!-- Raises Error message if invalid submission -->
             <% if flash.has?(:message) %>
-              <% flash[:message].each do |msg| %>
+              <% flash[:message].flatten.each do |msg| %>
                 <span class="text-danger">
                   <em><%= msg %></em>
                 </span>
