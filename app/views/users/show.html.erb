@@ -66,9 +66,9 @@
                     </ul> -->
                     <div class="card-body text-center">
                         <% if auction.user == current_user %>
-                            <a class="p-3 mb-2 bg-warning text-white rounded" href="/auctions/<%=auction.id%>/edit">edit</a>
+                            <a class="p-3 mb-2 btn-warning text-white rounded" href="/auctions/<%=auction.id%>/edit">edit</a>
                         <% end %>                   
-                        <a class="p-3 mb-2 bg-info text-white rounded" href="/auctions/<%=auction.id%>">View All Details</a>     
+                        <a class="p-3 mb-2 btn-info text-white rounded" href="/auctions/<%=auction.id%>">View All Details</a>     
                     </div>
                     <!-- End of .card-body -->
                 </div>
