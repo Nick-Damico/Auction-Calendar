@@ -37,30 +37,23 @@ class AuctionController < ApplicationController
 	 # Need to implement a way if failure due to invalid form entries the input
 		#  fields completed keep information on redirect.
 	post '/auctions' do
-		flash[:message] = [] 
-		auction = Auction.new(params["auction"])
-		auctioneer = Auctioneer.new(params["auctioneer"])	
-		if auction.invalid? || (auctioneer.invalid? && !params["auctioneer"]["name"].empty?)
-			flash[:message] << auction.errors.full_messages	if auction.invalid?
-			flash[:message] << auctioneer.errors.full_messages if auctioneer.invalid? 
-			redirect to '/auctions/new'
-		end	
+		flash[:message] = get_error_msgs(params)
+		redirect to '/auctions/new' if !flash[:message].empty?
+
 		@auction = current_user.auctions.new(params["auction"])
+		auctioneer = Auctioneer.new(params["auctioneer"])
 		@auction.auctioneers << auctioneer if auctioneer.valid?
 		@auction.save
 		redirect to "/auctions/#{@auction.id}"		
 	end
 
 	patch '/auctions/:id' do
-		flash[:message] = [] 
+		flash[:message] = get_error_msgs(params)
 		@auction = Auction.find(params[:id])
-		auctioneer = Auctioneer.new(params["auctioneer"])
-		if @auction.invalid? || (auctioneer.invalid? && !params["auctioneer"]["name"].empty?)
-			flash[:message] << @auction.errors.full_messages	if @auction.invalid?
-			flash[:message] << auctioneer.errors.full_messages if auctioneer.invalid? 
-			redirect to "/auctions/#{@auction.id}/edit"
-		end	
+		redirect to "/auctions/#{@auction.id}/edit" if !flash[:message].empty?
+		
 		@auction.update(params["auction"])		
+		auctioneer = Auctioneer.new(params["auctioneer"])
 		@auction.auctioneers << auctioneer if auctioneer.valid?
 		@auction.save
 		redirect to "/auctions/#{@auction.id}"

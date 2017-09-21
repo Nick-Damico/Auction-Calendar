@@ -30,5 +30,17 @@ class ApplicationController < Sinatra::Base
 	    def h(string)
   			Rack::Utils.escape_html(string)
 		end
+
+		def get_error_msgs(params)
+			error_msgs = []
+			auction = Auction.new(params["auction"])
+			auctioneer = Auctioneer.new(params["auctioneer"])	
+			if auction.invalid? || (auctioneer.invalid? && !params["auctioneer"]["name"].empty?)
+				error_msgs << auction.errors.full_messages	if auction.invalid?
+				error_msgs << auctioneer.errors.full_messages if auctioneer.invalid? 				
+			end	
+			error_msgs
+		end
+
 	end
 end
