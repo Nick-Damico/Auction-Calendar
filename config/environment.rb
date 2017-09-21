@@ -10,5 +10,6 @@ configure :development do
   )
 end
 
+require 'pry'
 require 'rack-flash'
 require_all 'app'

@@ -5,7 +5,7 @@ GIT
     database_cleaner (1.6.1)
 
 GEM
-  remote: https://rubygems.org/
+  remote: http://rubygems.org/
   specs:
     activemodel (5.1.4)
       activesupport (= 5.1.4)
