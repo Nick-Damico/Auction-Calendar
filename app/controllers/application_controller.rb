@@ -35,9 +35,20 @@ class ApplicationController < Sinatra::Base
 			error_msgs = []
 			auction = Auction.new(params["auction"])
 			auctioneer = Auctioneer.new(params["auctioneer"])	
-			error_msgs << auction.errors.full_messages	if auction.invalid?
-			error_msgs << auctioneer.errors.full_messages if auctioneer.invalid? 
-							
+			if auction.invalid? || (auctioneer.invalid? && !params["auctioneer"]["name"].empty?)
+				error_msgs << auction.errors.full_messages	if auction.invalid?
+				error_msgs << auctioneer.errors.full_messages if auctioneer.invalid? 				
+			end	
+
+			error_msgs
+		end
+
+		def get_auctioneer_error_msgs(params)
+			error_msgs = []
+			a = Auctioneer.new(params["auctioneer"])
+			unless a.valid?
+				error_msgs = a.errors.full_messages
+			end
 			error_msgs
 		end
 

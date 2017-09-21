@@ -27,26 +27,21 @@ class AuctioneerController < ApplicationController
     end
 
 	post '/auctioneers' do
-		a = Auctioneer.new(params["auctioneer"])
-		if a.invalid?
-			flash[:message] = a.errors.full_messages
-			redirect to '/auctioneers/new'
-		end
-		a.save
-		erb :'auctioneers/auctioneers.html'
+		@auctioneer = Auctioneer.new(params["auctioneer"])
+		flash[:message] = get_auctioneer_error_msgs(params)
+		redirect to '/auctioneers/new' unless flash[:message].empty?
+		
+		@auctioneer.save
+		redirect to "/auctioneers/#{@auctioneer.id}"
 	end
 
 	patch '/auctioneers/:id' do
 		@auctioneer = Auctioneer.find(params[:id])
-		a = Auctioneer.new(params["auctioneer"])
-		
-		if a.invalid? && @auctioneer.auctioneer_license != a.auctioneer_license
-			flash[:message] = a.errors.full_messages
-			redirect to "/auctioneers/#{@auctioneer.id}/edit"
-		elsif a.valid? && params["auction_ids"] == nil
-			params["auction_ids"] == nil
-			@auctioneer.auctions.destroy_all
-		end
+		flash[:message] = get_auctioneer_error_msgs(params)
+		redirect to "/auctioneers/#{@auctioneer.id}/edit" unless flash[:message].empty?
+
+		@auctioneer.auctions.destroy_all if params["auction_ids"].nil?
+			
 		@auctioneer.update(params["auctioneer"])
 		redirect to "/auctioneers/#{@auctioneer.id}"
 	end
