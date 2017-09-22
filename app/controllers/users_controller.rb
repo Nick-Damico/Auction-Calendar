@@ -5,18 +5,19 @@ class UsersController < ApplicationController
 	end
 
 	get '/signup' do
+		redirect to '/auctions' if logged_in?
 		erb :'users/signup.html'
 	end
 
 	post '/signup' do
-		if User.new(params).valid? && !User.exists?(email: params["email"])
+		if User.exists?(email: params["email"])
+			flash[:message] = "Email already in Use"
+			redirect to '/signup'
+		else User.new(params).valid?
 			@user = User.create(params)
 			session[:id] = @user.id
-			redirect to '/auctions'
-		elsif !User.new(params).valid? && User.exists?(email: params["email"])
-			flash[:message] = "Email already in Use"
-		end
-		erb :'users/signup.html'
+		end			
+			redirect to '/auctions'	
 	end
 
 	get '/login' do
@@ -25,34 +26,20 @@ class UsersController < ApplicationController
 	end
 
 	post '/login' do
-		if @user = authorize_user(params)
-			session[:id] = @user.id
-		else
+		unless user = authorize_user(params)
 			flash[:message] = "Username or Password incorrect"
-			redirect to '/login' 
+			redirect to '/login' 					
 		end
+		session[:id] = user.id
 		redirect to :'/auctions'
 	end
 
 	get '/logout' do
-		if logged_in?
-			session.clear
-			redirect to '/login'
-		else
-			redirect to '/'
-		end
+		redirect to '/' if !logged_in?
+					
+		session.clear
+		redirect to '/login'
 	end
-
-	get '/users/:slug' do
-		redirect to :'/' if !logged_in?
-		if !logged_in?
-			redirect to :'/'
-		elsif !@user = User.find_by_slug(params[:slug])
-			redirect to :'/auctions'
-		end
-		@autions = @user.auctions
-		erb :'users/show.html'
-	end
-
+	
 end
 
