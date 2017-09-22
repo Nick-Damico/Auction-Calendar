@@ -14,8 +14,8 @@ class UsersController < ApplicationController
 			flash[:message] = "Email already in Use"
 			redirect to '/signup'
 		else User.new(params).valid?
-			@user = User.create(params)
-			session[:id] = @user.id
+			user = User.create(params)
+			session[:id] = user.id
 		end			
 			redirect to '/auctions'	
 	end
@@ -40,6 +40,6 @@ class UsersController < ApplicationController
 		session.clear
 		redirect to '/login'
 	end
-	
+
 end
 
