@@ -11,7 +11,56 @@
   </head>
   <body class="h-100 bg-login">
 
-    <%= yield %>
+  <% if logged_in? %>
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark justify-content-between">
+      <div class="container">
+
+          <a class="navbar-brand" href="/users/<%=current_user.slug%>">
+              <%=current_user.username%>
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+              <ul class="navbar-nav">
+                  <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">View</a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                          <a class="dropdown-item" href="/users/<%=current_user.slug%>">Your Auctions</a>
+                          <a class="dropdown-item" href="/auctions">All Auctions</a>
+                          <a class="dropdown-item" href="/auctioneers">All Auctioneers</a>
+                      </div>
+                  </li>
+                  <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Create</a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                          <a class="dropdown-item" href="/auctions/new">Add Auction</a>
+                          <a class="dropdown-item" href="/auctioneers/new">Add Auctioneer</a>
+                      </div>
+                  </li>
+              </ul>
+              <form class="ml-auto" method="get" action="/logout">
+                  <a class="nav-link btn btn-outline-primary" href="/logout">Log Out</a>    
+              </form>
+              <!-- End of /logout form -->
+          </div>
+          <!-- End .navbar-collapse -->
+      </div>
+      <!-- End of .container adds a max width to navigation, this stops nav options from getting too wide -->
+  </nav>
+  <!-- End of main Nav -->
+  <% else %>
+    <nav class="navbar navbar-dark bg-dark navbar-landing justify-content-between">
+      <a href="/"><h3 class="masthead-brand text-light">Auction Calendar</h3></a>
+      <% if request.path_info = '/login' %>
+        <a class="nav-link btn btn-outline-success" href="/signup">Sign Up</a>
+      <% else %>
+        <a class="nav-link btn btn-outline-primary" href="/login">Log In</a>
+      <% end %>
+    </nav>
+  <% end %>
+
+  <%= yield %>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
