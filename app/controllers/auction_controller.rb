@@ -1,11 +1,8 @@
 class AuctionController < ApplicationController
 
-	get '/auctions' do
-		# Removes [:message] for signup failure
-		flash[:message].clear if flash[:message]
-		if !logged_in?
-			redirect to :'/login'
-		end
+	get '/auctions' do		
+		redirect to :'/login' if !logged_in?
+
 		@auctions = Auction.all
 		erb :'auctions/auctions.html'
 	end
@@ -16,53 +13,48 @@ class AuctionController < ApplicationController
 	end
 
 	get '/auctions/:id' do
-		if !logged_in?
-			redirect to '/users/login'
-		end
+		redirect to '/login' if !logged_in?
+		
 		@auction = Auction.find(params[:id])
 		erb :'auctions/show.html'
 	end
 
 	get '/auctions/:id/edit' do	
+		redirect to '/' if !logged_in?
 		@auction = Auction.find(params[:id])			
-		if !logged_in?
-			redirect to '/' 
-		elsif !current_user.auctions.include?(@auction)
-			redirect to '/auctions'		
-		else
-			erb :'auctions/edit.html'
-		end
+		redirect to '/auctions'	if !current_user.auctions.include?(@auction)
+			
+		erb :'auctions/edit.html'
 	end
 
-	 # Need to implement a way if failure due to invalid form entries the input
-		#  fields completed keep information on redirect.
+	 #  Need to implement a way if failure 
+	 # due to invalid form entries the input 
+	 # fields completed keep information on redirect.
 	post '/auctions' do
-		flash[:message] = get_error_msgs(params)
+		flash[:message] = error_msg(params)
 		redirect to '/auctions/new' if !flash[:message].empty?
 
-		@auction = current_user.auctions.new(params["auction"])
+		auction = current_user.auctions.new(params["auction"])
 		auctioneer = Auctioneer.new(params["auctioneer"])
-		@auction.auctioneers << auctioneer if auctioneer.valid?
-		@auction.save
-		redirect to "/auctions/#{@auction.id}"		
+		auction.auctioneers << auctioneer if auctioneer.valid?
+		auction.save
+		redirect to "/auctions/#{auction.id}"		
 	end
 
 	patch '/auctions/:id' do
-		flash[:message] = get_error_msgs(params)
-		@auction = Auction.find(params[:id])
-		redirect to "/auctions/#{@auction.id}/edit" if !flash[:message].empty?
+		flash[:message] = patch_auction_errors(params)
+		auction = Auction.find(params[:id])
+		redirect to "/auctions/#{auction.id}/edit" if !flash[:message].empty?
 		
-		@auction.update(params["auction"])		
+		auction.update(params["auction"])		
 		auctioneer = Auctioneer.new(params["auctioneer"])
-		@auction.auctioneers << auctioneer if auctioneer.valid?
-		@auction.save
-		redirect to "/auctions/#{@auction.id}"
+		auction.auctioneers << auctioneer if auctioneer.valid?
+		auction.save
+		redirect to "/auctions/#{auction.id}"
 	end
 
 	delete '/auctions/:id' do
-		if @auction = current_user.auctions.find(params[:id])
-			Auction.destroy(@auction.id)
-		end
+		Auction.destroy(@auction.id) if @auction = current_user.auctions.find(params[:id])			
 		redirect to '/auctions'
 	end
 
