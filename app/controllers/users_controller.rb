@@ -41,5 +41,13 @@ class UsersController < ApplicationController
 		redirect to '/login'
 	end
 
+	get '/users/:slug' do		
+		redirect to :'/' if !logged_in?		
+		redirect to :'/auctions' if !@user = User.find_by_slug(params[:slug])		
+		
+		@autions = @user.auctions		
+		erb :'users/show.html'		
+ 	end
+
 end
 
