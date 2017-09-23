@@ -1,9 +1,7 @@
 class AuctioneerController < ApplicationController
 
 	get '/auctioneers' do
-		if !logged_in?
-			redirect to '/'
-		end
+		redirect to '/' if !logged_in?
 		@auctioneers = Auctioneer.all
 		erb :'auctioneers/auctioneers.html'
 	end
@@ -14,6 +12,7 @@ class AuctioneerController < ApplicationController
 	end
 
 	 get '/auctioneers/:id' do
+	 	redirect to '/' if !logged_in?
 	 	if !@auctioneer = Auctioneer.find_by(id: params[:id])
 	 		redirect to '/auctioneers'
       	end
@@ -28,7 +27,7 @@ class AuctioneerController < ApplicationController
 
 	post '/auctioneers' do
 		@auctioneer = Auctioneer.new(params["auctioneer"])
-		flash[:message] = get_auctioneer_error_msgs(params)
+		flash[:message] = error_msg(params)
 		redirect to '/auctioneers/new' unless flash[:message].empty?
 		
 		@auctioneer.save
@@ -37,8 +36,8 @@ class AuctioneerController < ApplicationController
 
 	patch '/auctioneers/:id' do
 		@auctioneer = Auctioneer.find(params[:id])
-		flash[:message] = get_auctioneer_error_msgs(params)
-		redirect to "/auctioneers/#{@auctioneer.id}/edit" unless flash[:message].empty?
+		flash[:message] = patch_auctioneer_errors(params)
+		redirect to "/auctioneers/#{@auctioneer.id}/edit" if !flash[:message].empty?
 
 		@auctioneer.auctions.destroy_all if params["auction_ids"].nil?
 			
@@ -47,9 +46,7 @@ class AuctioneerController < ApplicationController
 	end
 
 	delete '/auctioneers/:id' do
-		if @auctioneer = Auctioneer.find(params[:id])
-			Auctioneer.destroy(@auctioneer.id)
-		end
+		Auctioneer.destroy(@auctioneer.id) if @auctioneer = Auctioneer.find(params[:id])
 		redirect to '/auctioneers'
 	end
 
