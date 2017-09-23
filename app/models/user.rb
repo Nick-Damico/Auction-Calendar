@@ -2,9 +2,8 @@ class User < ActiveRecord::Base
 	has_many :auctions, dependent: :destroy
  	has_secure_password
 
- 	validates :password, :email, :username,	presence: true
-
-	validates :email,	uniqueness: true
+ 	validates :email, :username, presence: true
+	validates :email, :username, uniqueness: true
 
 	def slug
 		self.username.downcase.gsub(" ", "-")
