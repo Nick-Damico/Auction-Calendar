@@ -34,7 +34,6 @@ class ApplicationController < Sinatra::Base
 	    end
 
 		def error_msg(params)
-			error_msgs = []
 	    	params_to_obj(params).each.map do |obj|	
 	    		if obj.invalid? && !obj.class.column_names.include?("name")
 	    			obj.errors.full_messages 
