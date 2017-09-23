@@ -27,9 +27,6 @@ class AuctionController < ApplicationController
 		erb :'auctions/edit.html'
 	end
 
-	 #  Need to implement a way if failure 
-	 # due to invalid form entries the input 
-	 # fields completed keep information on redirect.
 	post '/auctions' do
 		flash[:message] = error_msg(params)
 		redirect to '/auctions/new' if !flash[:message].empty?

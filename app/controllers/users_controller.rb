@@ -6,18 +6,20 @@ class UsersController < ApplicationController
 
 	get '/signup' do
 		redirect to '/auctions' if logged_in?
+		@user = User.new
 		erb :'users/signup.html'
 	end
 
 	post '/signup' do
-		if User.exists?(email: params["email"])
-			flash[:message] = "Email already in Use"
-			redirect to '/signup'
-		else User.new(params).valid?
-			user = User.create(params)
-			session[:id] = user.id
-		end			
-			redirect to '/auctions'	
+		redirect to '/auctions' if logged_in?
+		@user = User.new(params)
+		if @user.save
+			session[:user_id] = @user.id
+			redirect to '/auctions'
+		else 
+			flash[:message] = @user.errors.full_messages.join(', ')
+			erb :'users/signup.html'
+		end
 	end
 
 	get '/login' do
@@ -30,7 +32,7 @@ class UsersController < ApplicationController
 			flash[:message] = "Username or Password incorrect"
 			redirect to '/login' 					
 		end
-		session[:id] = user.id
+		session[:user_id] = user.id
 		redirect to :'/auctions'
 	end
 
