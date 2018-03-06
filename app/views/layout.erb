@@ -4,7 +4,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Auction Calendar: Auction Management CMS</title>    
+    <title>Auction Calendar: Auction Management CMS</title>
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/css/bootstrap_override.css">
@@ -40,7 +40,7 @@
                   </li>
               </ul>
               <form class="ml-auto" method="get" action="/logout">
-                  <a class="nav-link btn btn-outline-primary" href="/logout">Log Out</a>    
+                  <a class="nav-link btn btn-outline-primary" href="/logout">Log Out</a>
               </form>
               <!-- End of /logout form -->
           </div>
@@ -50,12 +50,13 @@
   </nav>
   <!-- End of main Nav -->
   <% else %>
-    <nav class="navbar navbar-dark bg-dark navbar-landing justify-content-between">
-      <a href="/"><h3 class="masthead-brand text-light">Auction Calendar</h3></a>
+    <nav class="navbar navbar-dark bg-dark navbar-landing">
+      <a class="pull-left" href="/"><h3 class="masthead-brand text-light">Auction Calendar</h3></a>
       <% if request.path_info = '/login' %>
-        <a class="nav-link btn btn-outline-success" href="/signup">Sign Up</a>
-      <% else %>
+      <div class="nav navbar-right">
+        <a class="nav-link margin-right btn btn-outline-success" href="/signup">Sign Up</a>
         <a class="nav-link btn btn-outline-primary" href="/login">Log In</a>
+      </div>
       <% end %>
     </nav>
   <% end %>

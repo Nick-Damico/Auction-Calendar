@@ -14,7 +14,9 @@ body.bg-login {
 .navbar-landing {
 	z-index: 100;
 }
-
+.margin-right {
+	margin-right: 8px;
+}
 /*===========================================
 	Buttons
 ===========================================*/
@@ -29,7 +31,7 @@ div.card-header > h4.card-title { font-size: 1.2rem; }
 
 /*// Small devices (landscape phones, 576px and up)*/
 @media (min-width: 320px) {
-	.landing-page--header,.signup-page--header,.login-page--header{ padding-top: 8rem; }	
+	.landing-page--header,.signup-page--header,.login-page--header{ padding-top: 8rem; }
 }
 
 @media (min-width: 320px) and (max-width: 767px) {
@@ -42,7 +44,7 @@ div.card-header > h4.card-title { font-size: 1.2rem; }
 }
 
 /*Large devices (desktops, 992px and up)*/
-@media (min-width: 992px) { 
+@media (min-width: 992px) {
 	.landing-page--header{ padding-top: 12rem; }
 }
 
