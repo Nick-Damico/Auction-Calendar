@@ -12,6 +12,7 @@ gem 'bcrypt'
 gem "rails-erd"
 gem 'rack-flash3'
 gem 'paperclip', '~> 5.2', '>= 5.2.1'
+gem 'pg'
 
 group :test do
   gem 'rspec'
