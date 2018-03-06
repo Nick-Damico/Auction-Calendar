@@ -1,17 +1,14 @@
 development:
-  adapter: postgresql
-  database: auction_calendar_development
-  pool: 5
-  timeout: 5000
-
-test:
-  adapter: postgresql
-  database: auction_calendar_test
+  adapter: sqlite3
+  database: db/development.sqlite
+  host: localhost
   pool: 5
   timeout: 5000
 
 production:
+  url: <%= ENV['DATABASE_URL'] %>
   adapter: postgresql
-  database: auction_calendar_production
+  database: mydb
+  host: localhost
   pool: 5
   timeout: 5000

@@ -13,17 +13,15 @@ gem "rails-erd"
 gem 'rack-flash3'
 gem 'paperclip', '~> 5.2', '>= 5.2.1'
 gem 'pg'
+gem 'sqlite3', :group => :development
+gem 'tux', :group => :development
+gem 'pry', :group => :development
+gem 'shotgun', :group => :development
+
 
 group :test do
   gem 'rspec'
   gem 'capybara'
   gem 'rack-test'
   gem 'database_cleaner', git: 'https://github.com/bmabey/database_cleaner.git'
-end
-
-group :development do
-  gem 'sqlite3'
-  gem 'tux'
-  gem 'pry'
-  gem 'shotgun'
 end
