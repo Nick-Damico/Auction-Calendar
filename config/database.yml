@@ -1,17 +1,13 @@
 development:
   adapter: postgresql
-  database: action_calander_development
-  pool: 5
-  timeout: 5000
-
-test:
-  adapter: postgresql
-  database: action_calander_test
+  database: action_calender_development
   pool: 5
   timeout: 5000
 
 production:
+  url: <%= ENV['DATABASE_URL'] %>
   adapter: postgresql
-  database: action_calander_production
+  database: mydb
+  host: localhost
   pool: 5
   timeout: 5000
