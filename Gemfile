@@ -8,16 +8,19 @@ gem 'rake'
 gem 'require_all'
 gem 'thin'
 gem 'bcrypt'
-gem "rails-erd"
+gem 'rails-erd'
 gem 'rack-flash3'
 gem 'paperclip', '~> 5.2', '>= 5.2.1'
 gem 'pg'
-gem 'tux', :group => :development
-gem 'pry', :group => :development
-gem 'shotgun', :group => :development
 
 group :development do
+  gem 'tux'
+  gem 'shotgun'
+end
+
+group :development, :test do
   gem 'sqlite3'
+  gem 'pry'
 end
 
 group :test do
