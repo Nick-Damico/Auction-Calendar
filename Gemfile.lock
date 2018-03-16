@@ -130,7 +130,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  activerecord
   bcrypt
   capybara
   database_cleaner!
